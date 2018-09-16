@@ -1,42 +1,28 @@
 package org.prezydium.caching.model;
 
 
-import javax.persistence.*;
 import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "DEVELOPERS")
-public class Developer {
+public class DevFormModel {
 
-    @Id
-    @GeneratedValue
     private Long id;
 
-    @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "SALARY")
     private int salary;
 
-    @Column(name = "GENDER")
     private Gender gender;
 
-    @Column(name = "LANGUAGES")
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "LANGUAGES"
-            , joinColumns = @JoinColumn(name = "id"))
     private Set<ProgrammingLanguages> knownLanguages;
 
-    public Developer() {
+    public DevFormModel() {
     }
 
-    public Developer(String firstName, String lastName, int salary, Gender gender, EnumSet<ProgrammingLanguages> knownLanguages) {
+    public DevFormModel(String firstName, String lastName, int salary, Gender gender, EnumSet<ProgrammingLanguages> knownLanguages) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
@@ -96,13 +82,13 @@ public class Developer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Developer developer = (Developer) o;
-        return salary == developer.salary &&
-                Objects.equals(id, developer.id) &&
-                Objects.equals(firstName, developer.firstName) &&
-                Objects.equals(lastName, developer.lastName) &&
-                gender == developer.gender &&
-                Objects.equals(knownLanguages, developer.knownLanguages);
+        DevFormModel devEntity = (DevFormModel) o;
+        return salary == devEntity.salary &&
+                Objects.equals(id, devEntity.id) &&
+                Objects.equals(firstName, devEntity.firstName) &&
+                Objects.equals(lastName, devEntity.lastName) &&
+                gender == devEntity.gender &&
+                Objects.equals(knownLanguages, devEntity.knownLanguages);
     }
 
     @Override
@@ -112,7 +98,7 @@ public class Developer {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Developer{");
+        final StringBuilder sb = new StringBuilder("DevEntity{");
         sb.append("id=").append(id);
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');

@@ -2,7 +2,7 @@ package org.prezydium.caching.controller;
 
 
 import org.prezydium.caching.dao.DeveloperDao;
-import org.prezydium.caching.model.Developer;
+import org.prezydium.caching.model.DevEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +22,9 @@ public class DataFetcher {
     }
     @GetMapping(path = "/get-developers")
     public String getDevelopers(){
-        List<Developer> listOFDevelopers = developerDao.findAll();
+        List<DevEntity> listOFDevEntities = developerDao.findAll();
         StringBuilder sb = new StringBuilder();
-        listOFDevelopers.forEach(sb::append);
+        listOFDevEntities.forEach(sb::append);
         log.info("Fetching data from database");
         return sb.toString();
     }
