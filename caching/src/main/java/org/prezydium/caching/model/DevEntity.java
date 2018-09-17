@@ -36,7 +36,7 @@ public class DevEntity {
     public DevEntity() {
     }
 
-    public DevEntity(String firstName, String lastName, int salary, Gender gender, EnumSet<ProgrammingLanguages> knownLanguages) {
+    public DevEntity(String firstName, String lastName, int salary, Gender gender, Set<ProgrammingLanguages> knownLanguages) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
@@ -88,7 +88,7 @@ public class DevEntity {
         return knownLanguages;
     }
 
-    public void setKnownLanguages(EnumSet<ProgrammingLanguages> knownLanguages) {
+    public void setKnownLanguages(Set<ProgrammingLanguages> knownLanguages) {
         this.knownLanguages = knownLanguages;
     }
 

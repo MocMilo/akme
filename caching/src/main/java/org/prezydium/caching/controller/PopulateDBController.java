@@ -6,6 +6,7 @@ import org.prezydium.caching.model.Gender;
 import org.prezydium.caching.model.ProgrammingLanguages;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.EnumSet;
 
@@ -19,8 +20,8 @@ public class PopulateDBController {
         this.developerDao = developerDao;
     }
 
-    @GetMapping(path = "/test")
-    public String populateDBWithExampleData() {
+    @GetMapping(path = "/create-test-data")
+    public RedirectView populateDBWithExampleData() {
         DevEntity dev3k
                 = new DevEntity("Kristoff", "Jawowski",
                 3000, Gender.MALE, EnumSet.of(ProgrammingLanguages.JAVA, ProgrammingLanguages.JAVA_SCRIPT));
@@ -33,7 +34,7 @@ public class PopulateDBController {
                 = new DevEntity("TINKY", "WINKI",
                 15000, Gender.OTHER, EnumSet.of(ProgrammingLanguages.JAVA));
         developerDao.save(dev25k);
-        return "OK";
+        return new RedirectView("/");
     }
 
 }

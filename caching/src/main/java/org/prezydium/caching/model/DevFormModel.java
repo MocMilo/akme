@@ -22,7 +22,8 @@ public class DevFormModel {
     public DevFormModel() {
     }
 
-    public DevFormModel(String firstName, String lastName, int salary, Gender gender, EnumSet<ProgrammingLanguages> knownLanguages) {
+    public DevFormModel(Long id, String firstName, String lastName, int salary, Gender gender, Set<ProgrammingLanguages> knownLanguages) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
@@ -82,13 +83,13 @@ public class DevFormModel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DevFormModel devEntity = (DevFormModel) o;
-        return salary == devEntity.salary &&
-                Objects.equals(id, devEntity.id) &&
-                Objects.equals(firstName, devEntity.firstName) &&
-                Objects.equals(lastName, devEntity.lastName) &&
-                gender == devEntity.gender &&
-                Objects.equals(knownLanguages, devEntity.knownLanguages);
+        DevFormModel that = (DevFormModel) o;
+        return salary == that.salary &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName) &&
+                gender == that.gender &&
+                Objects.equals(knownLanguages, that.knownLanguages);
     }
 
     @Override
@@ -98,7 +99,7 @@ public class DevFormModel {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("DevEntity{");
+        final StringBuilder sb = new StringBuilder("DevFormModel{");
         sb.append("id=").append(id);
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');
