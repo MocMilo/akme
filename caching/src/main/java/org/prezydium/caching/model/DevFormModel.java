@@ -1,7 +1,6 @@
 package org.prezydium.caching.model;
 
 
-import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -75,7 +74,7 @@ public class DevFormModel {
         return knownLanguages;
     }
 
-    public void setKnownLanguages(EnumSet<ProgrammingLanguages> knownLanguages) {
+    public void setKnownLanguages(Set<ProgrammingLanguages> knownLanguages) {
         this.knownLanguages = knownLanguages;
     }
 
