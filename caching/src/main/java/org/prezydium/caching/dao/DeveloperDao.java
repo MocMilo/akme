@@ -9,6 +9,6 @@ import java.util.List;
 public interface DeveloperDao extends JpaRepository<DevEntity, Long> {
 
     @Override
-    @Cacheable(value = "devs", key = "#root.methodName")
+    @Cacheable(value = "devs")
     List<DevEntity> findAll();
 }
