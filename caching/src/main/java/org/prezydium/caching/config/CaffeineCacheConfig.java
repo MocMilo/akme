@@ -22,9 +22,10 @@ public class CaffeineCacheConfig {
 
     @Bean
     public CacheManager cacheManager() {
-
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
-        Caffeine caffeine = Caffeine.newBuilder().expireAfterWrite(5, TimeUnit.SECONDS);
+        Caffeine caffeine = Caffeine.newBuilder()
+                .expireAfterWrite(5, TimeUnit.SECONDS)
+                .maximumSize(10);
         caffeineCacheManager.setCaffeine(caffeine);
         return caffeineCacheManager;
     }

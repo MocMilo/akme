@@ -12,7 +12,6 @@ public class ManualClearCacheService {
         this.cacheManager = cacheManager;
     }
 
-    //wonderful place to place @Scheduled ! ;)
     public void clearCache(){
         cacheManager.getCacheNames().parallelStream().forEach(name -> cacheManager.getCache(name).clear());
     }

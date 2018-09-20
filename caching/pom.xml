@@ -78,6 +78,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<profiles>
+						<profile>basic</profile>
+						<profile>eh</profile>
+						<profile>caffeine</profile>
+					</profiles>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
