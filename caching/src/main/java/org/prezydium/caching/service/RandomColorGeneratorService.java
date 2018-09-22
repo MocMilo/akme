@@ -12,13 +12,13 @@ public class RandomColorGeneratorService {
 
     private final Logger log = LoggerFactory.getLogger(RandomColorGeneratorService.class);
 
-    @Cacheable("color")
+    @Cacheable(value = "color", unless = "#buttonNumber % 2 == 0")
     public Integer[] generateRandomRGB(int buttonNumber){
         Integer[] rgbArr = new Integer[3];
         rgbArr[0] = new Random().nextInt(256);
         rgbArr[1] = new Random().nextInt(256);
         rgbArr[2] = new Random().nextInt(256);
-        log.info(String.format("Created new color r: %d g: %d b: %d  ", rgbArr[0], rgbArr[1], rgbArr[2]));
+        log.info(String.format("Created new color r: %d g: %d b: %d  . Used button id: %d", rgbArr[0], rgbArr[1], rgbArr[2], buttonNumber));
         return rgbArr;
     }
 
