@@ -7,3 +7,4 @@ In this project I have three different Spring cache implementantions done by:
 - Caffeine
 
 One example of @cachable method works in interface and one is done at method in normal bean with addition of simple usage of SpEL.
+To work, app must be started with one of spring profiles: basic, eh, caffeine.
