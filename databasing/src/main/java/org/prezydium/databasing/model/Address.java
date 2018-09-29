@@ -1,14 +1,16 @@
 package org.prezydium.databasing.model;
 
 import javax.persistence.*;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "ADDRESSES")
 public class Address {
 
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "CITY")
     private String city;
@@ -19,20 +21,24 @@ public class Address {
     @Column(name = "NUMBER")
     private String number;
 
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
+    private Set<Building> buildings;
+
     public Address() {
     }
 
-    public Address(String city, String street, String number) {
+    public Address(String city, String street, String number, Set<Building> buildings) {
         this.city = city;
         this.street = street;
         this.number = number;
+        this.buildings = buildings;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -58,5 +64,41 @@ public class Address {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public Set<Building> getBuildings() {
+        return buildings;
+    }
+
+    public void setBuildings(Set<Building> buildings) {
+        this.buildings = buildings;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return id == address.id &&
+                Objects.equals(city, address.city) &&
+                Objects.equals(street, address.street) &&
+                Objects.equals(number, address.number) &&
+                Objects.equals(buildings, address.buildings);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, city, street, number, buildings);
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", number='" + number + '\'' +
+                ", buildings=" + buildings +
+                '}';
     }
 }

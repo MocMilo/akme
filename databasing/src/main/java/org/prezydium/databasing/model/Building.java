@@ -2,21 +2,21 @@ package org.prezydium.databasing.model;
 
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "BUILDINGS")
 public class Building {
 
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "BUILDING_TYPE")
     @Enumerated(EnumType.STRING)
     private BuildingType buildingType;
 
-    @Column(name = "ADDRESS")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Address address;
 
     public Building() {
@@ -27,11 +27,11 @@ public class Building {
         this.address = address;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -51,5 +51,27 @@ public class Building {
         this.address = address;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Building building = (Building) o;
+        return id == building.id &&
+                buildingType == building.buildingType &&
+                Objects.equals(address, building.address);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, buildingType, address);
+    }
+
+    @Override
+    public String toString() {
+        return "Building{" +
+                "id=" + id +
+                ", buildingType=" + buildingType +
+                ", address=" + address +
+                '}';
+    }
 }
