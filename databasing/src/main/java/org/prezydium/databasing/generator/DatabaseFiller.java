@@ -25,6 +25,6 @@ public class DatabaseFiller {
             Building building = randomBuildingGenerator.generateRandomBuilding();
             buildingDao.save(building);
         }
-        return "Database filled with random data containing" + number + "buildings";
+        return "Database filled with random data containing: " + number + " buildings";
     }
 }
