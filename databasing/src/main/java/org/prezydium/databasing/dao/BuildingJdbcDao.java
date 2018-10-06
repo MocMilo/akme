@@ -1,14 +1,14 @@
 package org.prezydium.databasing.dao;
 
+import org.prezydium.databasing.mapper.BuildingFromDBRowMapper;
 import org.prezydium.databasing.model.BuildingFromDB;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
-@Service
+@Repository
 public class BuildingJdbcDao {
 
     private String sqlQuery = "SELECT\n" +
@@ -29,8 +29,7 @@ public class BuildingJdbcDao {
     }
 
     public List<BuildingFromDB> getAll() throws IOException {
-        List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sqlQuery);
-        resultList.forEach(x -> x.values().forEach(System.out::println));
-        return null;
+        List<BuildingFromDB>resultList = jdbcTemplate.query(sqlQuery, new BuildingFromDBRowMapper());
+        return resultList;
     }
 }

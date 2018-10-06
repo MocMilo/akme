@@ -1,7 +1,10 @@
 package org.prezydium.databasing.model;
 
+import java.util.Objects;
+
 public class BuildingFromDB {
 
+    private Long id;
     private BuildingType buildingType;
     private String city;
     private String street;
@@ -10,11 +13,20 @@ public class BuildingFromDB {
     public BuildingFromDB() {
     }
 
-    public BuildingFromDB(BuildingType buildingType, String city, String street, String buildingNumber) {
+    public BuildingFromDB(Long id, BuildingType buildingType, String city, String street, String buildingNumber) {
+        this.id = id;
         this.buildingType = buildingType;
         this.city = city;
         this.street = street;
         this.buildingNumber = buildingNumber;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public BuildingType getBuildingType() {
@@ -47,5 +59,33 @@ public class BuildingFromDB {
 
     public void setBuildingNumber(String buildingNumber) {
         this.buildingNumber = buildingNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BuildingFromDB that = (BuildingFromDB) o;
+        return Objects.equals(id, that.id) &&
+                buildingType == that.buildingType &&
+                Objects.equals(city, that.city) &&
+                Objects.equals(street, that.street) &&
+                Objects.equals(buildingNumber, that.buildingNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, buildingType, city, street, buildingNumber);
+    }
+
+    @Override
+    public String toString() {
+        return "BuildingFromDB{" +
+                "id=" + id +
+                ", buildingType=" + buildingType +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", buildingNumber='" + buildingNumber + '\'' +
+                '}';
     }
 }
