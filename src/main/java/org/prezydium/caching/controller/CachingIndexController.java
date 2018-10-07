@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class IndexController {
+public class CachingIndexController {
 
     private final CacheManager cacheManager;
 
-    public IndexController(CacheManager cacheManager) {
+    public CachingIndexController(CacheManager cacheManager) {
         this.cacheManager = cacheManager;
     }
 
-    @GetMapping(path = "/")
+    @GetMapping(path = "/ca/caching")
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("caching-index");
         modelAndView.addObject("cacheName", cacheManager.getClass().getSimpleName());
         return modelAndView;
     }
