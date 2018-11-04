@@ -12,3 +12,7 @@ To work, app must be started with one of spring profiles: basic, eh, caffeine.
 ##database(ing)
 
 In this module I practise various jpa and jdbc techniques - in progress. 
+
+##exceptions
+
+Exceptions in Spring - in progress. 
