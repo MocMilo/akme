@@ -2,6 +2,7 @@ package org.prezydium.databasing.dao;
 
 import org.prezydium.databasing.mapper.BuildingFromDBRowMapper;
 import org.prezydium.databasing.model.BuildingFromDB;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -30,6 +31,13 @@ public class BuildingJdbcDao {
 
     public List<BuildingFromDB> getAll() throws IOException {
         List<BuildingFromDB>resultList = jdbcTemplate.query(sqlQuery, new BuildingFromDBRowMapper());
+        return resultList;
+    }
+
+    public List<BuildingFromDB> getAllBeanPropertyRowMapper() throws IOException {
+        BeanPropertyRowMapper beanPropertyRowMapper = new BeanPropertyRowMapper(BuildingFromDB.class);
+        beanPropertyRowMapper.setPrimitivesDefaultedForNullValue(true);
+        List<BuildingFromDB>resultList = jdbcTemplate.query(sqlQuery, beanPropertyRowMapper);
         return resultList;
     }
 }

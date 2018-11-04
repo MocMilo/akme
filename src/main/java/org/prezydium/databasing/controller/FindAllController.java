@@ -20,10 +20,17 @@ public class FindAllController {
         this.buildingJdbcDao = buildingJdbcDao;
     }
 
-    @GetMapping(value = "/db/list-buildings")
+    @GetMapping(value = "/db/list-buildings-row-mapper")
         public ModelAndView getAllBuildings() throws IOException {
             ModelAndView modelAndView = new ModelAndView("buildings-list");
             modelAndView.addObject("buildingsList", buildingJdbcDao.getAll());
             return modelAndView;
+    }
+
+    @GetMapping(value = "/db/list-buildings-bean-property")
+    public ModelAndView getAllBuildingsWithBeanRowMapper() throws IOException {
+        ModelAndView modelAndView = new ModelAndView("buildings-list");
+        modelAndView.addObject("buildingsList", buildingJdbcDao.getAll());
+        return modelAndView;
     }
 }
