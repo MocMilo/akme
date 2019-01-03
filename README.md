@@ -9,11 +9,15 @@ In this part I have three different Spring cache implementantions done by:
 
 One example of @cachable method works in interface and one is done at method in normal bean with addition of simple usage of SpEL.
 To work, app must be started with one of spring profiles: basic, eh, caffeine.
+ex. --spring.profiles.active=caffeine
 
 ## database(ing)
 
-In this module I practise various jpa and jdbc techniques - in progress. 
-
+In this module I practise various jpa and jdbc techniques.
 ## exceptions
 
-Exceptions in Spring - in progress. 
+Exceptions in Spring. Gotta catch them all.
+
+## security
+
+Learning about Spring Security.
