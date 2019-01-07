@@ -19,15 +19,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("admin")
                 .password(passwordEncoder().encode("admin1"))
-                .roles("ADMIN");
+                .roles("ADMIN", "USER")
+                .and()
+                .withUser("kristoff")
+                .password(passwordEncoder().encode("abc"))
+                .roles("USER");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/admin-secure")
-                .hasRole("ADMIN")
+                .antMatchers("/admin-secure").hasRole("ADMIN")
+                .antMatchers("/user-secure").hasRole("USER")
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin()
