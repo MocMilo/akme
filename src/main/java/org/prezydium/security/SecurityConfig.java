@@ -1,5 +1,6 @@
 package org.prezydium.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,6 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+     private PeopleWithNameOnLetterKAuthenticationProvider peopleWithNameOnLetterKAuthenticationProvider;
+
     @Override
     public void configure(AuthenticationManagerBuilder authManager) throws Exception {
         authManager
@@ -21,9 +25,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .password(passwordEncoder().encode("admin1"))
                 .roles("ADMIN", "USER")
                 .and()
-                .withUser("kristoff")
+                .withUser("tester")
                 .password(passwordEncoder().encode("abc"))
                 .roles("USER");
+        authManager.authenticationProvider(peopleWithNameOnLetterKAuthenticationProvider);
     }
 
     @Override
