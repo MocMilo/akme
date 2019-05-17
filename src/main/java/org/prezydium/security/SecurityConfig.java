@@ -10,14 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-     private PeopleWithNameOnLetterKAuthenticationProvider peopleWithNameOnLetterKAuthenticationProvider;
+    private PeopleWithNameOnLetterKAuthenticationProvider peopleWithNameOnLetterKAuthenticationProvider;
 
     @Override
     public void configure(AuthenticationManagerBuilder authManager) throws Exception {
