@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -18,6 +20,9 @@ public class FileReadingController {
 
     @Value("classpath:/files/hello.txt")
     private Resource helloFile;
+
+    @Value("classpath:/files/hellozip.zip")
+    private Resource helloZipFile;
 
     @Autowired
     private ResourceLoader resourceLoader;
@@ -32,5 +37,12 @@ public class FileReadingController {
         return StreamUtils.copyToString(resourceLoader
                 .getResource("classpath:/files/hello.txt")
                 .getInputStream(), UTF_8);
+    }
+
+    @RequestMapping(value = "/filereading/zip")
+    public String sendZippedFileAsString() throws IOException {
+        ZipInputStream zipInputStream = new ZipInputStream(helloZipFile.getInputStream());
+        zipInputStream.getNextEntry();
+        return StreamUtils.copyToString(zipInputStream, UTF_8);
     }
 }

@@ -21,3 +21,7 @@ Exceptions in Spring. Gotta catch them all.
 ## security
 
 Learning about Spring Security.
+
+## file reading
+
+As Spring app is packed into jar file, it prevents traditional ways of opening files inside of it. The resource interface comes for the rescue.
